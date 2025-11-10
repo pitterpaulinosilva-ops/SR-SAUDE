@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Search, ExternalLink, Folder } from 'lucide-react';
 import { Plan, ProcessedAction } from '../types';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from './Tabs';
+import Sidebar from './Sidebar';
 import StatusChart from './charts/StatusChart';
 import ResponsibleChart from './charts/ResponsibleChart';
 import SectorChart from './charts/SectorChart';
@@ -20,6 +20,7 @@ const ActionPlanDashboard: React.FC<ActionPlanDashboardProps> = ({ plan, actions
     const [searchTerm, setSearchTerm] = useState('');
     const [currentFilter, setCurrentFilter] = useState('Todos');
     const [filteredData, setFilteredData] = useState<ProcessedAction[]>([]);
+    const [activeTab, setActiveTab] = useState('plan');
 
     useEffect(() => {
         let filtered = actions;
@@ -50,32 +51,86 @@ const ActionPlanDashboard: React.FC<ActionPlanDashboardProps> = ({ plan, actions
         'Todos': 'bg-gradient-to-r from-gray-500 to-gray-600 text-white hover:from-gray-600 hover:to-gray-700 shadow-lg'
     }
 
-    return (
-        <>
-            <Tabs defaultValue="plan" className="w-full">
-                <div className="flex justify-center mb-4 sm:mb-6 md:mb-8">
-                    <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-lg sm:rounded-xl p-1 sm:p-2 shadow-lg border border-white/20 dark:border-slate-700/20 w-full max-w-4xl transition-colors duration-300">
-                        <TabsList className="bg-transparent p-0 h-auto grid grid-cols-1 sm:grid-cols-3 gap-1 w-full">
-                            <TabsTrigger value="plan" className="whitespace-nowrap py-2 sm:py-3 px-3 sm:px-6 rounded-md sm:rounded-lg font-medium text-xs sm:text-sm transition-colors duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-blue-700 data-[state=active]:text-white data-[state=active]:shadow-md hover:bg-gray-100 dark:hover:bg-slate-700 w-full">Plano de Ação</TabsTrigger>
-                            <TabsTrigger value="responsible" className="whitespace-nowrap py-2 sm:py-3 px-3 sm:px-6 rounded-md sm:rounded-lg font-medium text-xs sm:text-sm transition-colors duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-blue-700 data-[state=active]:text-white data-[state=active]:shadow-md hover:bg-gray-100 dark:hover:bg-slate-700 w-full"><span className="hidden sm:inline">Ações por Responsável</span><span className="sm:hidden">Responsáveis</span></TabsTrigger>
-                            <TabsTrigger value="sector" className="whitespace-nowrap py-2 sm:py-3 px-3 sm:px-6 rounded-md sm:rounded-lg font-medium text-xs sm:text-sm transition-colors duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-blue-700 data-[state=active]:text-white data-[state=active]:shadow-md hover:bg-gray-100 dark:hover:bg-slate-700 w-full"><span className="hidden sm:inline">Ações por Setor</span><span className="sm:hidden">Setores</span></TabsTrigger>
-                        </TabsList>
-                    </div>
-                </div>
-                <TabsContent value="plan" className="space-y-4 sm:space-y-6">
-                    <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-lg sm:rounded-xl shadow-lg border border-white/20 dark:border-slate-700/20 overflow-hidden transition-colors duration-300"><StatusChart data={actions} /></div>
-                    <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-lg sm:rounded-xl shadow-lg border border-white/20 dark:border-slate-700/20 p-3 sm:p-4 md:p-6 transition-colors duration-300">
-                        <div className="flex flex-col gap-3 sm:gap-4 items-center">
-                            <div className="relative w-full"><Search className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" /><Input type="text" placeholder="Pesquisar por código, ação, responsável ou setor..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} /></div>
-                            <div className="flex flex-wrap gap-2 justify-center w-full">{filterButtons.map((button) => (<Button key={button.value} variant={currentFilter === button.value ? "default" : "outline"} onClick={() => setCurrentFilter(button.value)} className={currentFilter === button.value ? filterButtonClasses[button.value] : ''}>{button.label}</Button>))}</div>
+    // Renderiza o conteúdo baseado na tab ativa
+    const renderContent = () => {
+        switch (activeTab) {
+            case 'plan':
+                return (
+                    <div className="space-y-4 sm:space-y-6">
+                        <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-lg sm:rounded-xl shadow-lg border border-white/20 dark:border-slate-700/20 overflow-hidden transition-colors duration-300">
+                            <StatusChart data={actions} />
                         </div>
+                        <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-lg sm:rounded-xl shadow-lg border border-white/20 dark:border-slate-700/20 p-3 sm:p-4 md:p-6 transition-colors duration-300">
+                            <div className="flex flex-col gap-3 sm:gap-4 items-center">
+                                <div className="relative w-full">
+                                    <Search className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" />
+                                    <Input 
+                                        type="text" 
+                                        placeholder="Pesquisar por código, ação, responsável ou setor..." 
+                                        value={searchTerm} 
+                                        onChange={(e) => setSearchTerm(e.target.value)} 
+                                    />
+                                </div>
+                                <div className="flex flex-wrap gap-2 justify-center w-full">
+                                    {filterButtons.map((button) => (
+                                        <Button 
+                                            key={button.value} 
+                                            variant={currentFilter === button.value ? "default" : "outline"} 
+                                            onClick={() => setCurrentFilter(button.value)} 
+                                            className={currentFilter === button.value ? filterButtonClasses[button.value] : ''}
+                                        >
+                                            {button.label}
+                                        </Button>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                        {filteredData.length > 0 ? (
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
+                                {filteredData.map((action) => (
+                                    <ActionCard key={action.id} action={action} />
+                                ))}
+                            </div>
+                        ) : (
+                            <div className="text-center py-12 sm:py-16 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-lg sm:rounded-xl shadow-lg border border-white/20 dark:border-slate-700/20 transition-colors duration-300">
+                                <Folder className="mx-auto h-10 w-10 sm:h-12 sm:w-12 text-gray-400" />
+                                <h3 className="mt-2 text-sm font-medium text-gray-900 dark:text-gray-100">
+                                    Nenhum resultado encontrado
+                                </h3>
+                                <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+                                    Tente ajustar sua busca ou filtros.
+                                </p>
+                            </div>
+                        )}
                     </div>
-                    {filteredData.length > 0 ? (<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6">{filteredData.map((action) => (<ActionCard key={action.id} action={action} />))}</div>) : (<div className="text-center py-12 sm:py-16 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-lg sm:rounded-xl shadow-lg border border-white/20 dark:border-slate-700/20 transition-colors duration-300"><Folder className="mx-auto h-10 w-10 sm:h-12 sm:w-12 text-gray-400" /><h3 className="mt-2 text-sm font-medium text-gray-900 dark:text-gray-100">Nenhum resultado encontrado</h3><p className="mt-1 text-sm text-gray-500 dark:text-gray-400">Tente ajustar sua busca ou filtros.</p></div>)}
-                </TabsContent>
-                <TabsContent value="responsible"><div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-lg sm:rounded-xl shadow-lg border border-white/20 dark:border-slate-700/20 overflow-hidden transition-colors duration-300"><ResponsibleChart data={actions} /></div></TabsContent>
-                <TabsContent value="sector"><div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-lg sm:rounded-xl shadow-lg border border-white/20 dark:border-slate-700/20 overflow-hidden transition-colors duration-300"><SectorChart data={actions} /></div></TabsContent>
-            </Tabs>
-        </>
+                );
+            case 'responsible':
+                return (
+                    <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-lg sm:rounded-xl shadow-lg border border-white/20 dark:border-slate-700/20 overflow-hidden transition-colors duration-300">
+                        <ResponsibleChart data={actions} />
+                    </div>
+                );
+            case 'sector':
+                return (
+                    <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-lg sm:rounded-xl shadow-lg border border-white/20 dark:border-slate-700/20 overflow-hidden transition-colors duration-300">
+                        <SectorChart data={actions} />
+                    </div>
+                );
+            default:
+                return null;
+        }
+    };
+
+    return (
+        <div className="flex gap-0 md:gap-6">
+            {/* Sidebar */}
+            <Sidebar activeTab={activeTab} onTabChange={setActiveTab} />
+            
+            {/* Conteúdo Principal */}
+            <main className="flex-1 w-full md:w-auto transition-all duration-300">
+                {renderContent()}
+            </main>
+        </div>
     );
 };
 
