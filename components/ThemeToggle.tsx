@@ -38,17 +38,19 @@ const ThemeToggle: React.FC = () => {
     return (
         <button 
             onClick={toggleTheme} 
-            // Classes Tailwind com suporte a tema escuro:
+            // Classes Tailwind com suporte a tema escuro e responsivo:
+            // - p-1.5 sm:p-2: Padding menor em mobile
             // - bg-slate-200 dark:bg-slate-700: Fundo claro/escuro
             // - text-gray-800 dark:text-gray-100: Cor do texto
             // - hover:bg-slate-300 dark:hover:bg-slate-600: Estado hover
             // - transition-colors duration-300: Transição suave de 300ms
-            className="p-2 rounded-full bg-slate-200 dark:bg-slate-700 text-gray-800 dark:text-gray-100 hover:bg-slate-300 dark:hover:bg-slate-600 transition-colors duration-300" 
-            aria-label="Toggle theme"
+            className="p-1.5 sm:p-2 rounded-full bg-slate-200 dark:bg-slate-700 text-gray-800 dark:text-gray-100 hover:bg-slate-300 dark:hover:bg-slate-600 transition-colors duration-300 active:scale-95" 
+            aria-label="Alternar tema"
+            title={theme === 'light' ? 'Ativar modo escuro' : 'Ativar modo claro'}
         >
             {/* Exibe lua no tema claro (indica que pode mudar para escuro) */}
             {/* Exibe sol no tema escuro (indica que pode mudar para claro) */}
-            {theme === 'light' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
+            {theme === 'light' ? <Moon className="w-4 h-4 sm:w-5 sm:h-5" /> : <Sun className="w-4 h-4 sm:w-5 sm:h-5" />}
         </button>
     );
 };
