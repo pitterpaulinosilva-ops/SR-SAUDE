@@ -248,6 +248,7 @@ Analise os dados e responda às perguntas do usuário de forma clara e objetiva,
                         </h2>
                         <p className="text-xs text-blue-100">
                             Powered by {apiProvider === 'gemini' ? 'Gemini' : 'GPT'}
+                            {apiKey && ' • ✓ Configurado'}
                         </p>
                     </div>
                 </div>
