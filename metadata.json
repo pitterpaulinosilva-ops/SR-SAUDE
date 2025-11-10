@@ -1,0 +1,5 @@
+{
+  "name": "Multi-Plan Action Dashboard",
+  "description": "A dynamic dashboard to monitor and visualize the progress of multiple strategic action plans, including Health (ONA), SST (ISO 45001), and Environmental (ISO 14001). Features real-time data, interactive charts, and detailed task tracking.",
+  "requestFramePermissions": []
+}
