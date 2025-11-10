@@ -53,24 +53,44 @@ const AppContent = () => {
                 </div>
             </header>
 
-            {/* Conteúdo Principal com padding-top para compensar a topbar fixa */}
-            <div className="container mx-auto p-2 sm:p-4 md:p-8 flex-grow mt-16">
-                
-                {plansLoading && <LoadingSpinner />}
-                {error && <div className="text-center py-12 sm:py-16 bg-red-100 dark:bg-red-900/30 rounded-lg transition-colors duration-300"><AlertTriangle className="mx-auto h-12 w-12 text-red-500" /><h3 className="mt-2 font-medium text-red-800 dark:text-red-200">Ocorreu um erro</h3><p className="mt-1 text-sm text-red-600 dark:text-red-300">{error}</p></div>}
-                
-                {!plansLoading && !error && plans.length > 0 && activePlanId && (
-                    <>
-                        {plans.map(plan => (
-                            activePlanId === plan.id && (
-                                <div key={plan.id}>
-                                    {(actionsLoading || !activePlan) ? <LoadingSpinner/> : <ActionPlanDashboard plan={activePlan} actions={actions} allPlans={plans} />}
-                                </div>
-                            )
-                        ))}
-                    </>
-                )}
-            </div>
+            {/* Conteúdo Principal - Layout Responsivo Otimizado */}
+            <main className="flex-grow mt-16 w-full">
+                <div className="h-full w-full max-w-[2000px] mx-auto px-2 sm:px-4 lg:px-6 xl:px-8 py-4 sm:py-6 lg:py-8">
+                    {plansLoading && (
+                        <div className="flex items-center justify-center min-h-[60vh]">
+                            <LoadingSpinner />
+                        </div>
+                    )}
+                    
+                    {error && (
+                        <div className="flex items-center justify-center min-h-[60vh] px-4">
+                            <div className="text-center py-12 sm:py-16 bg-red-100 dark:bg-red-900/30 rounded-lg transition-colors duration-300 max-w-2xl w-full">
+                                <AlertTriangle className="mx-auto h-12 w-12 text-red-500" />
+                                <h3 className="mt-2 font-medium text-red-800 dark:text-red-200">Ocorreu um erro</h3>
+                                <p className="mt-1 text-sm text-red-600 dark:text-red-300">{error}</p>
+                            </div>
+                        </div>
+                    )}
+                    
+                    {!plansLoading && !error && plans.length > 0 && activePlanId && (
+                        <>
+                            {plans.map((plan: any) => (
+                                activePlanId === plan.id && (
+                                    <div key={plan.id} className="h-full">
+                                        {(actionsLoading || !activePlan) ? (
+                                            <div className="flex items-center justify-center min-h-[60vh]">
+                                                <LoadingSpinner />
+                                            </div>
+                                        ) : (
+                                            <ActionPlanDashboard plan={activePlan} actions={actions} allPlans={plans} />
+                                        )}
+                                    </div>
+                                )
+                            ))}
+                        </>
+                    )}
+                </div>
+            </main>
 
             <footer className="text-center p-3 sm:p-4 md:p-6 mt-6 sm:mt-8 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border-t border-white/20 dark:border-slate-700/20 transition-colors duration-300">
                 <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 px-2">{getFooterText()}</p>

@@ -86,8 +86,8 @@ const ActionPlanDashboard: React.FC<ActionPlanDashboardProps> = ({ plan, actions
                             </div>
                         </div>
                         {filteredData.length > 0 ? (
-                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
-                                {filteredData.map((action) => (
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-3 sm:gap-4 lg:gap-5 xl:gap-6">
+                                {filteredData.map((action: any) => (
                                     <ActionCard key={action.id} action={action} />
                                 ))}
                             </div>
@@ -122,13 +122,15 @@ const ActionPlanDashboard: React.FC<ActionPlanDashboardProps> = ({ plan, actions
     };
 
     return (
-        <div className="flex gap-0 md:gap-6">
+        <div className="flex flex-col md:flex-row gap-0 md:gap-4 lg:gap-6 h-full">
             {/* Sidebar */}
             <Sidebar activeTab={activeTab} onTabChange={setActiveTab} />
             
-            {/* Conteúdo Principal */}
-            <main className="flex-1 w-full md:w-auto transition-all duration-300">
-                {renderContent()}
+            {/* Conteúdo Principal - Otimizado para diferentes telas */}
+            <main className="flex-1 min-w-0 w-full transition-all duration-300">
+                <div className="h-full">
+                    {renderContent()}
+                </div>
             </main>
         </div>
     );

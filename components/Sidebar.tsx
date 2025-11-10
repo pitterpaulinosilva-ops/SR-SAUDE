@@ -93,14 +93,16 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange }) => {
                 />
             )}
 
-            {/* Sidebar */}
+            {/* Sidebar - Otimizada para diferentes telas */}
             <aside
                 className={`
-                    fixed md:sticky top-16 md:top-20 left-0 h-[calc(100vh-4rem)] md:h-[calc(100vh-5rem)]
-                    w-72 bg-white dark:bg-slate-800 
+                    fixed md:sticky top-16 md:top-20 left-0 
+                    h-[calc(100vh-4rem)] md:h-[calc(100vh-5rem)]
+                    w-64 sm:w-72 lg:w-80 xl:w-72
+                    bg-white dark:bg-slate-800 
                     border-r border-gray-200 dark:border-slate-700
                     shadow-xl md:shadow-none
-                    transition-transform duration-300 ease-in-out
+                    transition-all duration-300 ease-in-out
                     z-40
                     ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
                 `}
