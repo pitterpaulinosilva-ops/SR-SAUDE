@@ -52,12 +52,29 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ actions }) => {
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLTextAreaElement>(null);
 
-    // Carrega API key do localStorage
+    // Carrega API key do localStorage ou variáveis de ambiente
     useEffect(() => {
         try {
+            // Tenta carregar do localStorage primeiro
             const savedKey = localStorage.getItem('ai_api_key');
             const savedProvider = localStorage.getItem('ai_provider') as 'gemini' | 'gpt';
-            if (savedKey) setApiKey(savedKey);
+            
+            if (savedKey) {
+                setApiKey(savedKey);
+            } else {
+                // Se não houver no localStorage, tenta carregar das variáveis de ambiente
+                const envGeminiKey = process.env.GEMINI_API_KEY;
+                const envOpenAIKey = process.env.OPENAI_API_KEY;
+                
+                if (envGeminiKey) {
+                    setApiKey(envGeminiKey);
+                    setApiProvider('gemini');
+                } else if (envOpenAIKey) {
+                    setApiKey(envOpenAIKey);
+                    setApiProvider('gpt');
+                }
+            }
+            
             if (savedProvider) setApiProvider(savedProvider);
         } catch (error) {
             console.warn('Failed to load API settings');
@@ -128,14 +145,15 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ actions }) => {
             };
 
             setMessages(prev => [...prev, assistantMessage]);
-        } catch (error) {
+        } catch (error: any) {
+            console.error('AI API Error:', error);
             const errorMessage: Message = {
                 id: (Date.now() + 1).toString(),
                 role: 'assistant',
-                content: 'Desculpe, ocorreu um erro ao processar sua solicitação. Verifique sua API Key e tente novamente.',
+                content: `Desculpe, ocorreu um erro ao processar sua solicitação: ${error.message || 'Erro desconhecido'}. Verifique sua API Key e tente novamente.`,
                 timestamp: new Date()
             };
-            setMessages(prev => [...prev, errorMessage]);
+            setMessages((prev: Message[]) => [...prev, errorMessage]);
         } finally {
             setIsLoading(false);
         }
@@ -158,6 +176,8 @@ Analise os dados e responda às perguntas do usuário de forma clara e objetiva,
 
     // Chama Gemini API
     const callGemini = async (systemPrompt: string, userPrompt: string): Promise<string> => {
+        console.log('Calling Gemini API with key:', apiKey.substring(0, 10) + '...');
+        
         const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`, {
             method: 'POST',
             headers: {
@@ -173,10 +193,13 @@ Analise os dados e responda às perguntas do usuário de forma clara e objetiva,
         });
 
         if (!response.ok) {
-            throw new Error('Gemini API error');
+            const errorData = await response.json();
+            console.error('Gemini API Error Response:', errorData);
+            throw new Error(`Gemini API error: ${errorData.error?.message || response.statusText}`);
         }
 
         const data = await response.json();
+        console.log('Gemini API Response:', data);
         return data.candidates[0].content.parts[0].text;
     };
 
