@@ -178,7 +178,8 @@ Analise os dados e responda às perguntas do usuário de forma clara e objetiva,
     const callGemini = async (systemPrompt: string, userPrompt: string): Promise<string> => {
         console.log('Calling Gemini API with key:', apiKey.substring(0, 10) + '...');
         
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`, {
+        // Usando v1 ao invés de v1beta e gemini-1.5-flash ao invés de gemini-pro
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
