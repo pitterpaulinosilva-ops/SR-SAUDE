@@ -29,27 +29,30 @@ const AppContent = () => {
         <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800 text-gray-800 dark:text-gray-100 flex flex-col transition-colors duration-300">
             {/* Topbar Fixa */}
             <header className="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-slate-900 shadow-lg border-b border-gray-200 dark:border-slate-700 transition-colors duration-300">
-                <div className="container mx-auto px-4 py-3">
-                    <div className="flex items-center justify-between gap-4">
-                        {/* Logo */}
-                        <div className="flex items-center">
-                            <img src="/logo.png" alt="Logo" className="h-10 w-auto" />
-                        </div>
+                <div className="flex items-center justify-between gap-4 px-4 py-3">
+                    {/* Logo - Colada à esquerda */}
+                    <div className="flex items-center">
+                        <img src="/logo.png" alt="Logo" className="h-10 w-auto" />
+                    </div>
+                    
+                    {/* Espaçador flexível */}
+                    <div className="flex-1"></div>
                         
-                        {/* Botão Saúde (ONA) */}
+                        {/* Botão PA EPA - Final à direita (antes do ThemeToggle) */}
                         {!plansLoading && !error && plans.length > 0 && (
-                            <div className="flex-1 flex justify-center">
-                                <button
-                                    className="px-8 py-2 rounded-lg font-semibold text-sm bg-blue-600 dark:bg-blue-700 text-white hover:bg-blue-700 dark:hover:bg-blue-600 shadow-lg transition-colors duration-300"
-                                >
-                                    Saúde (ONA)
-                                </button>
-                            </div>
+                            <a
+                                href="https://sistemafiea.sysepa.com.br/epa/incluir_plano_acao.php?codigo=26203"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="px-8 py-2 rounded-lg font-semibold text-sm bg-blue-600 dark:bg-blue-700 text-white hover:bg-blue-700 dark:hover:bg-blue-600 shadow-lg transition-colors duration-300 inline-flex items-center gap-2"
+                            >
+                                PA EPA
+                                <ExternalLink className="w-4 h-4" />
+                            </a>
                         )}
                         
-                        {/* Theme Toggle */}
-                        <ThemeToggle />
-                    </div>
+                    {/* Theme Toggle - Final da direita */}
+                    <ThemeToggle />
                 </div>
             </header>
 
