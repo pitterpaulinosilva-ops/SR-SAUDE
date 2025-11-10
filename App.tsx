@@ -35,42 +35,74 @@ const AppContent = () => {
                 Pular para conteúdo principal
             </a>
             
-            {/* Topbar Fixa - Otimizado para Mobile */}
+            {/* Topbar Fixa - Layout Vertical em Mobile */}
             <header className="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-slate-900 shadow-lg border-b border-gray-200 dark:border-slate-700 transition-colors duration-300">
-                <div className="flex items-center justify-between gap-2 sm:gap-4 px-3 sm:px-4 py-2.5 sm:py-3">
-                    {/* Logo - Compacto em mobile */}
-                    <div className="flex items-center flex-shrink-0">
-                        <img src="/logo.png" alt="Logo" className="h-8 sm:h-10 w-auto" />
+                {/* Layout Mobile: Vertical (Logo acima, título abaixo) */}
+                <div className="md:hidden">
+                    {/* Linha 1: Logo, Botões */}
+                    <div className="flex items-center justify-between gap-2 px-3 py-2">
+                        <div className="flex items-center flex-shrink-0">
+                            <img src="/logo.png" alt="Logo" className="h-8 w-auto" />
+                        </div>
+                        
+                        <div className="flex items-center gap-2">
+                            {!plansLoading && !error && plans.length > 0 && (
+                                <a
+                                    href="https://sistemafiea.sysepa.com.br/epa/incluir_plano_acao.php?codigo=26203"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="px-3 py-1.5 rounded-lg font-semibold text-xs bg-blue-600 dark:bg-blue-700 text-white hover:bg-blue-700 dark:hover:bg-blue-600 shadow-lg transition-colors duration-300 inline-flex items-center gap-1 flex-shrink-0"
+                                    title="Abrir Plano de Ação no EPA"
+                                >
+                                    <span>EPA</span>
+                                    <ExternalLink className="w-3 h-3" />
+                                </a>
+                            )}
+                            <ThemeToggle />
+                        </div>
                     </div>
                     
-                    {/* Título do Plano de Ação - Centro, responsivo */}
-                    <div className="flex-1 flex justify-center px-1 sm:px-4 min-w-0">
+                    {/* Linha 2: Título do Plano */}
+                    <div className="px-3 pb-2">
+                        <h1 className="text-xs font-bold text-gray-900 dark:text-gray-100 leading-tight">
+                            Manutenção da Certificação ONA 2026
+                        </h1>
+                        <p className="text-[10px] text-gray-600 dark:text-gray-400">
+                            PA: 26203
+                        </p>
+                    </div>
+                </div>
+                
+                {/* Layout Desktop: Horizontal (tudo na mesma linha) */}
+                <div className="hidden md:flex items-center justify-between gap-4 px-4 py-3">
+                    <div className="flex items-center flex-shrink-0">
+                        <img src="/logo.png" alt="Logo" className="h-10 w-auto" />
+                    </div>
+                    
+                    <div className="flex-1 flex justify-center px-4 min-w-0">
                         <div className="text-center">
-                            <h1 className="text-xs sm:text-base md:text-lg font-bold text-gray-900 dark:text-gray-100 leading-tight truncate max-w-[180px] sm:max-w-none">
+                            <h1 className="text-base lg:text-lg font-bold text-gray-900 dark:text-gray-100 leading-tight">
                                 Manutenção da Certificação ONA 2026
                             </h1>
-                            <p className="text-[10px] sm:text-xs md:text-sm text-gray-600 dark:text-gray-400">
+                            <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400">
                                 PA: 26203
                             </p>
                         </div>
                     </div>
                         
-                    {/* Botão PA EPA - Compacto em mobile, maior em desktop */}
                     {!plansLoading && !error && plans.length > 0 && (
                         <a
                             href="https://sistemafiea.sysepa.com.br/epa/incluir_plano_acao.php?codigo=26203"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="px-3 sm:px-6 md:px-8 py-1.5 sm:py-2 rounded-lg font-semibold text-xs sm:text-sm bg-blue-600 dark:bg-blue-700 text-white hover:bg-blue-700 dark:hover:bg-blue-600 shadow-lg transition-colors duration-300 inline-flex items-center gap-1 sm:gap-2 flex-shrink-0"
+                            className="px-6 lg:px-8 py-2 rounded-lg font-semibold text-sm bg-blue-600 dark:bg-blue-700 text-white hover:bg-blue-700 dark:hover:bg-blue-600 shadow-lg transition-colors duration-300 inline-flex items-center gap-2 flex-shrink-0"
                             title="Abrir Plano de Ação no EPA"
                         >
-                            <span className="hidden xs:inline">PA</span>
-                            <span>EPA</span>
-                            <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4" />
+                            <span>PA EPA</span>
+                            <ExternalLink className="w-4 h-4" />
                         </a>
                     )}
                         
-                    {/* Theme Toggle - Compacto */}
                     <div className="flex-shrink-0">
                         <ThemeToggle />
                     </div>
@@ -78,7 +110,7 @@ const AppContent = () => {
             </header>
 
             {/* Conteúdo Principal - Layout Responsivo Otimizado */}
-            <main id="main-content" className="flex-grow mt-16 w-full">
+            <main id="main-content" className="flex-grow mt-[88px] md:mt-16 w-full">
                 <div className="h-full w-full max-w-[2000px] mx-auto px-2 sm:px-4 lg:px-6 xl:px-8 py-4 sm:py-6 lg:py-8">
                     {plansLoading && (
                         <div className="flex items-center justify-center min-h-[60vh]">

@@ -149,10 +149,10 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange }) => {
 
     return (
         <>
-            {/* Mobile Toggle Button */}
+            {/* Mobile Toggle Button - Ajustado para novo header */}
             <button
                 onClick={toggleMobile}
-                className="md:hidden fixed top-20 left-4 z-50 p-2 rounded-lg bg-white dark:bg-slate-800 shadow-lg border border-gray-200 dark:border-slate-700 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors duration-300"
+                className="md:hidden fixed top-[92px] z-50 left-4 p-2 rounded-lg bg-white dark:bg-slate-800 shadow-lg border border-gray-200 dark:border-slate-700 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors duration-300"
                 aria-label={isMobileOpen ? 'Fechar menu' : 'Abrir menu'}
                 aria-expanded={isMobileOpen}
                 aria-controls="sidebar-navigation"
@@ -174,8 +174,8 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange }) => {
                 ref={sidebarRef}
                 id="sidebar-navigation"
                 className={`
-                    fixed md:sticky top-16 md:top-20 left-0 
-                    h-[calc(100vh-4rem)] md:h-[calc(100vh-5rem)]
+                    fixed md:sticky top-[88px] md:top-20 left-0 
+                    h-[calc(100vh-88px)] md:h-[calc(100vh-5rem)]
                     bg-white dark:bg-slate-800 
                     border-r border-gray-200 dark:border-slate-700
                     transition-all duration-300 ease-in-out
