@@ -99,10 +99,14 @@ const AppContent = () => {
     );
 };
 
-// Componente raiz que envolve o App com o provedor de tema
+// Componente raiz que envolve o App com os provedores
+import { TaskProvider } from './context/TaskContext';
+
 const Root = () => (
     <ThemeProvider>
-        <AppContent />
+        <TaskProvider>
+            <AppContent />
+        </TaskProvider>
     </ThemeProvider>
 );
 

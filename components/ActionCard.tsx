@@ -1,15 +1,35 @@
 
-import React, { useState } from 'react';
-import { Users, Building, Clock, CheckCircle, AlertTriangle, ChevronDown, ChevronUp } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Users, Building, Clock, CheckCircle, AlertTriangle, ChevronDown, ChevronUp, ListTodo } from 'lucide-react';
 import { ProcessedAction, DelayStatus, TaskStatus } from '../types';
+import { useTaskContext } from '../context/TaskContext';
+import TaskList from './TaskList';
+import ProgressBar from './ProgressBar';
 
 interface ActionCardProps {
     action: ProcessedAction;
 }
 
 const ActionCard: React.FC<ActionCardProps> = ({ action }) => {
-    const { id, action: title, responsible, sector, endDate, delayStatus, followUp, status } = action;
+    const { id, action: title, responsible, sector, endDate, startDate, delayStatus, followUp, status } = action;
     const [isDetailsVisible, setIsDetailsVisible] = useState(false);
+    const [isTasksVisible, setIsTasksVisible] = useState(false);
+    
+    // Context de tarefas
+    const { 
+        getTasksForAction, 
+        getActionProgress, 
+        fetchTasksForAction
+    } = useTaskContext();
+    
+    // Buscar tarefas da ação
+    const tasks = getTasksForAction(id);
+    const progress = getActionProgress(id);
+    
+    // Carregar tarefas ao montar o componente
+    useEffect(() => {
+        fetchTasksForAction(id);
+    }, [id, fetchTasksForAction]);
 
     const delayStatusConfig: Record<DelayStatus, { icon: React.ReactElement; color: string; bg: string }> = {
         'Em Atraso': { icon: <AlertTriangle className="w-4 h-4" />, color: 'text-red-500', bg: 'bg-red-100 dark:bg-red-900/50' },
@@ -46,7 +66,38 @@ const ActionCard: React.FC<ActionCardProps> = ({ action }) => {
                 <div className="mt-4">
                     <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${currentTaskStatus.className}`}>Status: {currentTaskStatus.label}</span>
                 </div>
+                
+                {/* Seção de Tarefas */}
+                {tasks.length > 0 && (
+                    <div className="mt-4 p-3 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <div className="flex items-center justify-between mb-2">
+                            <div className="flex items-center gap-2">
+                                <ListTodo className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                                <span className="text-sm font-semibold text-blue-900 dark:text-blue-100">
+                                    {progress.completed}/{progress.total} tarefas
+                                </span>
+                            </div>
+                            <button
+                                onClick={() => setIsTasksVisible(!isTasksVisible)}
+                                className="text-xs font-medium text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors"
+                            >
+                                {isTasksVisible ? 'Ocultar' : 'Ver Tarefas'}
+                            </button>
+                        </div>
+                        <ProgressBar progress={progress} showLabel={false} size="sm" />
+                    </div>
+                )}
             </div>
+            
+            {/* Lista de Tarefas Expansível */}
+            {isTasksVisible && (
+                <div className="mt-4 pt-4 border-t border-gray-200 dark:border-slate-700">
+                    <TaskList
+                        tasks={tasks}
+                        isExpanded={true}
+                    />
+                </div>
+            )}
             <div className={`transition-all duration-500 ease-in-out overflow-hidden transition-colors ${isDetailsVisible ? 'max-h-96 mt-4 pt-4 border-t border-dashed border-gray-300 dark:border-slate-600' : 'max-h-0'}`}>
                 <h4 className="font-semibold text-sm text-gray-700 dark:text-gray-300 mb-2">Acompanhamento:</h4>
                 <p className="text-sm text-gray-600 dark:text-gray-400 whitespace-pre-wrap">{followUp || "Nenhum acompanhamento registrado."}</p>

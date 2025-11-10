@@ -23,7 +23,9 @@ import {
     Loader2,
     X,
     Save,
-    Trash2
+    Trash2,
+    ExternalLink,
+    Bot
 } from 'lucide-react';
 import { ProcessedAction } from '../types';
 
@@ -238,190 +240,170 @@ Analise os dados e responda às perguntas do usuário de forma clara e objetiva,
     };
 
     return (
-        <div className="h-full flex flex-col bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-gray-200 dark:border-slate-700 overflow-hidden">
+        <div className="h-full flex flex-col bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800 rounded-lg shadow-lg border border-gray-200 dark:border-slate-700 p-6 overflow-y-auto">
             {/* Header */}
-            <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-slate-700 bg-gradient-to-r from-blue-600 to-blue-700">
-                <div className="flex items-center gap-3">
-                    <Sparkles className="w-6 h-6 text-white" />
-                    <div>
-                        <h2 className="text-lg font-semibold text-white">
-                            Assistente de Insight
-                        </h2>
-                        <p className="text-xs text-blue-100">
-                            Powered by {apiProvider === 'gemini' ? 'Gemini' : 'GPT'}
-                            {apiKey && ' • ✓ Configurado'}
-                        </p>
-                    </div>
+            <div className="text-center mb-8">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl mb-4 shadow-lg">
+                    <Sparkles className="w-8 h-8 text-white" />
                 </div>
-                <div className="flex items-center gap-2">
-                    <button
-                        onClick={clearHistory}
-                        className="p-2 rounded-lg text-white hover:bg-white/20 transition-colors duration-300"
-                        title="Limpar histórico"
-                    >
-                        <Trash2 className="w-5 h-5" />
-                    </button>
-                    <button
-                        onClick={() => setShowSettings(!showSettings)}
-                        className="p-2 rounded-lg text-white hover:bg-white/20 transition-colors duration-300"
-                        title="Configurações"
-                    >
-                        <Settings className="w-5 h-5" />
-                    </button>
-                </div>
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">
+                    Assistentes de Insight
+                </h2>
+                <p className="text-sm text-gray-600 dark:text-gray-400 max-w-md mx-auto">
+                    Utilize assistentes de IA externos para análise avançada dos seus planos de ação
+                </p>
             </div>
 
-            {/* Settings Panel */}
-            {showSettings && (
-                <div className="p-4 bg-blue-50 dark:bg-slate-900 border-b border-gray-200 dark:border-slate-700">
-                    <div className="space-y-4">
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                                Provedor de IA
-                            </label>
-                            <div className="flex gap-2">
-                                <button
-                                    onClick={() => setApiProvider('gemini')}
-                                    className={`flex-1 px-4 py-2 rounded-lg font-medium text-sm transition-all duration-300 ${
-                                        apiProvider === 'gemini'
-                                            ? 'bg-blue-600 text-white'
-                                            : 'bg-gray-200 dark:bg-slate-700 text-gray-700 dark:text-gray-300'
-                                    }`}
-                                >
-                                    Gemini
-                                </button>
-                                <button
-                                    onClick={() => setApiProvider('gpt')}
-                                    className={`flex-1 px-4 py-2 rounded-lg font-medium text-sm transition-all duration-300 ${
-                                        apiProvider === 'gpt'
-                                            ? 'bg-blue-600 text-white'
-                                            : 'bg-gray-200 dark:bg-slate-700 text-gray-700 dark:text-gray-300'
-                                    }`}
-                                >
-                                    GPT
-                                </button>
-                            </div>
-                        </div>
+            {/* Assistentes Externos */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto w-full">
+                {/* Gemini */}
+                <a
+                    href="https://gemini.google.com/gem/1ZiPvbSuE3Tzw3SBmm8MYzo5vwIp63uEK?usp=sharing"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative bg-white dark:bg-slate-800 rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:border-blue-500 dark:hover:border-blue-400 hover:-translate-y-1"
+                >
+                    {/* Badge "Externo" */}
+                    <div className="absolute top-4 right-4">
+                        <span className="inline-flex items-center gap-1 px-2 py-1 bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 text-xs font-medium rounded-full">
+                            <ExternalLink className="w-3 h-3" />
+                            Externo
+                        </span>
+                    </div>
 
+                    {/* Logo/Ícone */}
+                    <div className="flex items-center gap-4 mb-4">
+                        <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                            <Bot className="w-6 h-6 text-white" />
+                        </div>
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                                API Key
-                            </label>
-                            <div className="flex gap-2">
-                                <div className="relative flex-1">
-                                    <Key className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                                    <input
-                                        type="password"
-                                        value={tempApiKey}
-                                        onChange={(e) => setTempApiKey(e.target.value)}
-                                        placeholder={`Cole sua ${apiProvider === 'gemini' ? 'Gemini' : 'OpenAI'} API Key`}
-                                        className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-300"
-                                    />
-                                </div>
-                                <button
-                                    onClick={saveApiKey}
-                                    className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors duration-300 flex items-center gap-2"
-                                >
-                                    <Save className="w-4 h-4" />
-                                    Salvar
-                                </button>
-                            </div>
-                            <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
-                                {apiProvider === 'gemini' 
-                                    ? 'Obtenha sua chave em: https://makersuite.google.com/app/apikey'
-                                    : 'Obtenha sua chave em: https://platform.openai.com/api-keys'
-                                }
+                            <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                                Google Gemini
+                            </h3>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">
+                                Assistente Google AI
                             </p>
                         </div>
                     </div>
-                </div>
-            )}
 
-            {/* Messages Area */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4">
-                {messages.length === 0 ? (
-                    <div className="flex flex-col items-center justify-center h-full text-center">
-                        <Sparkles className="w-16 h-16 text-blue-500 mb-4" />
-                        <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
-                            Bem-vindo ao Assistente de Insight!
-                        </h3>
-                        <p className="text-sm text-gray-600 dark:text-gray-400 max-w-md">
-                            Faça perguntas sobre as ações do Status Report. Posso ajudar com análises, 
-                            identificar gargalos, sugerir prioridades e muito mais.
-                        </p>
-                        {!apiKey && (
-                            <button
-                                onClick={() => setShowSettings(true)}
-                                className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-300"
-                            >
-                                Configurar API Key
-                            </button>
-                        )}
+                    {/* Descrição */}
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">
+                        Análise avançada com o modelo Gemini do Google. Ideal para insights profundos e análise contextual de dados complexos.
+                    </p>
+
+                    {/* Features */}
+                    <div className="flex flex-wrap gap-2 mb-4">
+                        <span className="px-2 py-1 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 text-xs rounded-full">
+                            Análise Contextual
+                        </span>
+                        <span className="px-2 py-1 bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 text-xs rounded-full">
+                            Multimodal
+                        </span>
                     </div>
-                ) : (
-                    <>
-                        {messages.map((message) => (
-                            <div
-                                key={message.id}
-                                className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
-                            >
-                                <div
-                                    className={`max-w-[80%] rounded-lg p-3 ${
-                                        message.role === 'user'
-                                            ? 'bg-blue-600 text-white'
-                                            : 'bg-gray-100 dark:bg-slate-700 text-gray-900 dark:text-gray-100'
-                                    }`}
-                                >
-                                    <p className="text-sm whitespace-pre-wrap">{message.content}</p>
-                                    <p className="text-xs mt-1 opacity-70">
-                                        {message.timestamp.toLocaleTimeString('pt-BR', { 
-                                            hour: '2-digit', 
-                                            minute: '2-digit' 
-                                        })}
-                                    </p>
-                                </div>
-                            </div>
-                        ))}
-                        {isLoading && (
-                            <div className="flex justify-start">
-                                <div className="bg-gray-100 dark:bg-slate-700 rounded-lg p-3">
-                                    <Loader2 className="w-5 h-5 animate-spin text-blue-600" />
-                                </div>
-                            </div>
-                        )}
-                    </>
-                )}
-                <div ref={messagesEndRef} />
+
+                    {/* CTA */}
+                    <div className="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-slate-700">
+                        <span className="text-sm font-medium text-blue-600 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300">
+                            Abrir Gemini
+                        </span>
+                        <ExternalLink className="w-4 h-4 text-blue-600 dark:text-blue-400 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                </a>
+
+                {/* Copilot */}
+                <a
+                    href="https://m365.cloud.microsoft:443/chat/?titleId=T_df29d454-c320-94e1-cb7a-f6092227a223&source=embedded-builder"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative bg-white dark:bg-slate-800 rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:border-green-500 dark:hover:border-green-400 hover:-translate-y-1"
+                >
+                    {/* Badge "Externo" */}
+                    <div className="absolute top-4 right-4">
+                        <span className="inline-flex items-center gap-1 px-2 py-1 bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300 text-xs font-medium rounded-full">
+                            <ExternalLink className="w-3 h-3" />
+                            Externo
+                        </span>
+                    </div>
+
+                    {/* Logo/Ícone */}
+                    <div className="flex items-center gap-4 mb-4">
+                        <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                            <Bot className="w-6 h-6 text-white" />
+                        </div>
+                        <div>
+                            <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">
+                                Microsoft Copilot
+                            </h3>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">
+                                Assistente Microsoft 365
+                            </p>
+                        </div>
+                    </div>
+
+                    {/* Descrição */}
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">
+                        Assistente integrado ao Microsoft 365. Perfeito para análise de dados corporativos e integração com ferramentas Microsoft.
+                    </p>
+
+                    {/* Features */}
+                    <div className="flex flex-wrap gap-2 mb-4">
+                        <span className="px-2 py-1 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300 text-xs rounded-full">
+                            M365 Integrado
+                        </span>
+                        <span className="px-2 py-1 bg-teal-50 dark:bg-teal-900/20 text-teal-700 dark:text-teal-300 text-xs rounded-full">
+                            Corporativo
+                        </span>
+                    </div>
+
+                    {/* CTA */}
+                    <div className="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-slate-700">
+                        <span className="text-sm font-medium text-green-600 dark:text-green-400 group-hover:text-green-700 dark:group-hover:text-green-300">
+                            Abrir Copilot
+                        </span>
+                        <ExternalLink className="w-4 h-4 text-green-600 dark:text-green-400 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                </a>
             </div>
 
-            {/* Input Area */}
-            <div className="p-4 border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900">
-                <div className="flex gap-2">
-                    <textarea
-                        ref={inputRef}
-                        value={input}
-                        onChange={(e) => setInput(e.target.value)}
-                        onKeyPress={handleKeyPress}
-                        placeholder="Digite sua pergunta sobre as ações..."
-                        className="flex-1 px-4 py-2 rounded-lg border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none transition-colors duration-300"
-                        rows={2}
-                        disabled={isLoading}
-                    />
-                    <button
-                        onClick={sendMessage}
-                        disabled={isLoading || !input.trim()}
-                        className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-300 flex items-center gap-2"
-                    >
-                        {isLoading ? (
-                            <Loader2 className="w-5 h-5 animate-spin" />
-                        ) : (
-                            <Send className="w-5 h-5" />
-                        )}
-                    </button>
+            {/* Info Footer */}
+            <div className="mt-8 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800 max-w-4xl mx-auto w-full">
+                <div className="flex items-start gap-3">
+                    <div className="flex-shrink-0 mt-0.5">
+                        <div className="w-8 h-8 bg-blue-500 dark:bg-blue-600 rounded-lg flex items-center justify-center">
+                            <Sparkles className="w-4 h-4 text-white" />
+                        </div>
+                    </div>
+                    <div className="flex-1">
+                        <h4 className="text-sm font-semibold text-blue-900 dark:text-blue-100 mb-1">
+                            💡 Dica de Uso
+                        </h4>
+                        <p className="text-xs text-blue-800 dark:text-blue-200 leading-relaxed">
+                            Estes assistentes externos foram configurados especificamente para análise de planos de ação. 
+                            Eles têm contexto sobre seus dados e podem fornecer insights valiosos sobre status, prazos e responsabilidades.
+                        </p>
+                    </div>
                 </div>
-                <p className="mt-2 text-xs text-gray-500 dark:text-gray-400 text-center">
-                    Pressione Enter para enviar • Shift+Enter para nova linha
-                </p>
+            </div>
+
+            {/* Assistente Interno (Em Desenvolvimento) */}
+            <div className="mt-8 p-6 bg-white dark:bg-slate-800 rounded-xl border-2 border-dashed border-gray-300 dark:border-slate-600 max-w-4xl mx-auto w-full">
+                <div className="text-center">
+                    <div className="inline-flex items-center justify-center w-12 h-12 bg-gray-100 dark:bg-slate-700 rounded-xl mb-3">
+                        <Bot className="w-6 h-6 text-gray-400 dark:text-gray-500" />
+                    </div>
+                    <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">
+                        Assistente Interno
+                    </h4>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                        Chat integrado em desenvolvimento
+                    </p>
+                    <div className="mt-3">
+                        <span className="inline-flex items-center gap-1 px-3 py-1 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300 text-xs font-medium rounded-full">
+                            <Loader2 className="w-3 h-3 animate-spin" />
+                            Em breve
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
     );
