@@ -51,6 +51,9 @@ const ActionPlanDashboard: React.FC<ActionPlanDashboardProps> = ({ plan, actions
         'Todos': 'bg-gradient-to-r from-gray-500 to-gray-600 text-white hover:from-gray-600 hover:to-gray-700 shadow-lg'
     }
 
+    // Estado para sub-tab de análises
+    const [analyticsSubTab, setAnalyticsSubTab] = useState<'responsible' | 'sector'>('responsible');
+
     // Renderiza o conteúdo baseado na tab ativa
     const renderContent = () => {
         switch (activeTab) {
@@ -68,7 +71,7 @@ const ActionPlanDashboard: React.FC<ActionPlanDashboardProps> = ({ plan, actions
                                         type="text" 
                                         placeholder="Pesquisar por código, ação, responsável ou setor..." 
                                         value={searchTerm} 
-                                        onChange={(e) => setSearchTerm(e.target.value)} 
+                                        onChange={(e: any) => setSearchTerm(e.target.value)} 
                                     />
                                 </div>
                                 <div className="flex flex-wrap gap-2 justify-center w-full">
@@ -104,16 +107,47 @@ const ActionPlanDashboard: React.FC<ActionPlanDashboardProps> = ({ plan, actions
                         )}
                     </div>
                 );
-            case 'responsible':
+            case 'analytics':
                 return (
-                    <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-lg sm:rounded-xl shadow-lg border border-white/20 dark:border-slate-700/20 overflow-hidden transition-colors duration-300">
-                        <ResponsibleChart data={actions} />
-                    </div>
-                );
-            case 'sector':
-                return (
-                    <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-lg sm:rounded-xl shadow-lg border border-white/20 dark:border-slate-700/20 overflow-hidden transition-colors duration-300">
-                        <SectorChart data={actions} />
+                    <div className="space-y-4 sm:space-y-6">
+                        {/* Sub-tabs para Análises */}
+                        <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-lg sm:rounded-xl shadow-lg border border-white/20 dark:border-slate-700/20 p-2 transition-colors duration-300">
+                            <div className="flex gap-2">
+                                <button
+                                    onClick={() => setAnalyticsSubTab('responsible')}
+                                    className={`
+                                        flex-1 px-4 py-2 rounded-lg font-medium text-sm transition-all duration-300
+                                        ${analyticsSubTab === 'responsible'
+                                            ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-md'
+                                            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700'
+                                        }
+                                    `}
+                                >
+                                    Por Responsável
+                                </button>
+                                <button
+                                    onClick={() => setAnalyticsSubTab('sector')}
+                                    className={`
+                                        flex-1 px-4 py-2 rounded-lg font-medium text-sm transition-all duration-300
+                                        ${analyticsSubTab === 'sector'
+                                            ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-md'
+                                            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700'
+                                        }
+                                    `}
+                                >
+                                    Por Setor
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Conteúdo da sub-tab */}
+                        <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-lg sm:rounded-xl shadow-lg border border-white/20 dark:border-slate-700/20 overflow-hidden transition-colors duration-300">
+                            {analyticsSubTab === 'responsible' ? (
+                                <ResponsibleChart data={actions} />
+                            ) : (
+                                <SectorChart data={actions} />
+                            )}
+                        </div>
                     </div>
                 );
             default:

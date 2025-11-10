@@ -21,11 +21,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { 
     ClipboardList, 
     Users, 
-    Building2, 
     Menu, 
     X,
     ChevronRight,
-    ChevronLeft,
     ChevronsLeft,
     ChevronsRight
 } from 'lucide-react';
@@ -117,18 +115,11 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange }) => {
             description: 'Visualizar todas as ações'
         },
         {
-            id: 'responsible',
-            label: 'Ações por Responsável',
+            id: 'analytics',
+            label: 'Análises',
             icon: <Users className="w-5 h-5" />,
-            value: 'responsible',
-            description: 'Agrupar por responsável'
-        },
-        {
-            id: 'sector',
-            label: 'Ações por Setor',
-            icon: <Building2 className="w-5 h-5" />,
-            value: 'sector',
-            description: 'Agrupar por setor'
+            value: 'analytics',
+            description: 'Responsáveis e Setores'
         }
     ];
 
