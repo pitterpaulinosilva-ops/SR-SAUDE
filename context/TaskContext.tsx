@@ -216,6 +216,237 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
                 createdAt: '2024-06-05T08:00:00Z',
                 updatedAt: '2024-06-05T08:00:00Z'
             }
+        ],
+        // Saúde ONA - Ação 26208: Testes de planos de contingência
+        26208: [
+            {
+                id: 'task-26276',
+                actionId: 26208,
+                action: 'TABULEIRO - Cronograma (atualizar) de testes na unidade, traçando ações de melhoria para as não conformidades',
+                responsible: 'Fania Silva',
+                sector: 'Segurança e Saúde para Indústria',
+                status: 'Em Andamento',
+                startDate: '2025-01-01',
+                endDate: '2025-10-31',
+                order: 0,
+                createdAt: '2025-01-01T08:00:00Z',
+                updatedAt: '2025-11-10T10:00:00Z'
+            },
+            {
+                id: 'task-26277',
+                actionId: 26208,
+                action: 'ARAPIRACA - Cronograma (atualizar) de testes na unidade, traçando ações de melhoria para as não conformidades',
+                responsible: 'Sarah Ferro',
+                sector: 'Segurança e Saúde para Indústria',
+                status: 'Em Andamento',
+                startDate: '2025-01-01',
+                endDate: '2025-10-31',
+                order: 1,
+                createdAt: '2025-01-01T08:00:00Z',
+                updatedAt: '2025-11-10T10:00:00Z'
+            },
+            {
+                id: 'task-26278',
+                actionId: 26208,
+                action: 'CAMBONA - Cronograma (atualizar) de testes na unidade, traçando ações de melhoria para as não conformidades',
+                responsible: 'Nice Cabral',
+                sector: 'Unidade Sesi Cambona',
+                status: 'Em Andamento',
+                startDate: '2025-01-01',
+                endDate: '2025-10-31',
+                order: 2,
+                createdAt: '2025-01-01T08:00:00Z',
+                updatedAt: '2025-11-10T10:00:00Z'
+            }
+        ],
+        // Saúde ONA - Ação 26209: Manual de Auditorias
+        26209: [
+            {
+                id: 'task-26279',
+                actionId: 26209,
+                action: 'Analisar junto a Governança as necessidades do processo de auditoria interna',
+                responsible: 'Pitter Silva',
+                sector: 'Processos',
+                status: 'Em Andamento',
+                startDate: '2025-01-01',
+                endDate: '2025-10-31',
+                order: 0,
+                createdAt: '2025-01-01T08:00:00Z',
+                updatedAt: '2025-11-10T10:00:00Z'
+            }
+        ],
+        // Saúde ONA - Ação 26211: Rastreabilidade de medicamentos
+        26211: [
+            {
+                id: 'task-26329',
+                actionId: 26211,
+                action: 'Revisar o protocolo de segurança da cadeia medicamentosa e inserir a obrigatoriedade da inserção do Lote e Validade dos medicamentos e anestésicos',
+                responsible: 'Arlecia Cruz',
+                sector: 'Segurança e Saúde para Indústria',
+                status: 'Concluído',
+                startDate: '2025-01-01',
+                endDate: '2025-10-15',
+                order: 0,
+                createdAt: '2025-01-01T08:00:00Z',
+                updatedAt: '2025-10-15T16:00:00Z'
+            },
+            {
+                id: 'task-26330',
+                actionId: 26211,
+                action: 'Revisar o POP da Espirometria e Estilar colírios acrescentando a rastreabilidade que será incluída na fila de atendimento do paciente',
+                responsible: 'Arlecia Cruz',
+                sector: 'Segurança e Saúde para Indústria',
+                status: 'Concluído',
+                startDate: '2025-01-01',
+                endDate: '2025-10-22',
+                order: 1,
+                followUp: 'POP REVISADO E FINALIZADO.',
+                createdAt: '2025-01-01T08:00:00Z',
+                updatedAt: '2025-10-22T14:00:00Z'
+            },
+            {
+                id: 'task-26331',
+                actionId: 26211,
+                action: 'Acrescentar o campo de procedimento nos prontuários eletrônicos',
+                responsible: 'Mylena Soares',
+                sector: 'Segurança e Saúde para Indústria',
+                status: 'Concluído',
+                startDate: '2025-01-01',
+                endDate: '2025-10-22',
+                order: 2,
+                followUp: 'Atualizado no prontuário LifeOne e no POP de auditoria dos prontuários de saúde assistencial. Dra Márcia e Dra Gabriela cientes e treinando individualmente os profissionais.',
+                createdAt: '2025-01-01T08:00:00Z',
+                updatedAt: '2025-10-22T17:00:00Z'
+            },
+            {
+                id: 'task-26332',
+                actionId: 26211,
+                action: 'Realizar treinamento com o corpo clínico para registro em prontuários do lote e validade dos medicamentos',
+                responsible: 'Marcia Casado',
+                sector: 'Unidade Sesi Cambona',
+                status: 'Em Andamento',
+                startDate: '2025-01-01',
+                endDate: '2025-10-31',
+                order: 3,
+                createdAt: '2025-01-01T08:00:00Z',
+                updatedAt: '2025-11-10T10:00:00Z'
+            },
+            {
+                id: 'task-26333',
+                actionId: 26211,
+                action: 'Revisar o checklist (forms) de auditoria de revisão de prontuários, acrescentando o campo "procedimento"',
+                responsible: 'Mylena Soares',
+                sector: 'Segurança e Saúde para Indústria',
+                status: 'Concluído',
+                startDate: '2025-01-01',
+                endDate: '2025-10-15',
+                order: 4,
+                createdAt: '2025-01-01T08:00:00Z',
+                updatedAt: '2025-10-15T15:00:00Z'
+            }
+        ],
+        // Saúde ONA - Ação 26212: Registros Odontologia
+        26212: [
+            {
+                id: 'task-26281',
+                actionId: 26212,
+                action: 'Atualizar manual de acordo com o perfil da unidade',
+                responsible: 'Marcia Casado',
+                sector: 'Unidade Sesi Cambona',
+                status: 'Em Andamento',
+                startDate: '2025-01-01',
+                endDate: '2025-10-31',
+                order: 0,
+                createdAt: '2025-01-01T08:00:00Z',
+                updatedAt: '2025-11-10T10:00:00Z'
+            },
+            {
+                id: 'task-26282',
+                actionId: 26212,
+                action: 'Estabelecer rotina de limpeza (POP) conforme as particularidades de cada unidade',
+                responsible: 'Marcia Casado',
+                sector: 'Unidade Sesi Cambona',
+                status: 'Em Andamento',
+                startDate: '2025-01-01',
+                endDate: '2025-10-31',
+                order: 1,
+                createdAt: '2025-01-01T08:00:00Z',
+                updatedAt: '2025-11-10T10:00:00Z'
+            }
+        ],
+        // Saúde ONA - Ação 26213: Rastreabilidade de materiais estéreis
+        26213: [
+            {
+                id: 'task-26283',
+                actionId: 26213,
+                action: 'TABULEIRO - Refazer inventário, verificar e retirar materiais sem condições de uso. Nas próximas aquisições, analisar tempo e quantidade de ciclos orientados pelo fornecedor',
+                responsible: 'Fania Silva',
+                sector: 'Segurança e Saúde para Indústria',
+                status: 'Em Andamento',
+                startDate: '2025-01-01',
+                endDate: '2025-10-31',
+                order: 0,
+                createdAt: '2025-01-01T08:00:00Z',
+                updatedAt: '2025-11-10T10:00:00Z'
+            },
+            {
+                id: 'task-26284',
+                actionId: 26213,
+                action: 'CAMBONA - Refazer inventário, verificar e retirar materiais sem condições de uso. Nas próximas aquisições, analisar tempo e quantidade de ciclos orientados pelo fornecedor',
+                responsible: 'Nice Cabral',
+                sector: 'Unidade Sesi Cambona',
+                status: 'Em Andamento',
+                startDate: '2025-01-01',
+                endDate: '2025-10-31',
+                order: 1,
+                createdAt: '2025-01-01T08:00:00Z',
+                updatedAt: '2025-11-10T10:00:00Z'
+            }
+        ],
+        // Saúde ONA - Ação 26243: Acompanhamento de comissões
+        26243: [
+            {
+                id: 'task-26272',
+                actionId: 26243,
+                action: 'Planejar o acompanhamento das comissões pela equipe local',
+                responsible: 'Mylena Soares',
+                sector: 'Segurança e Saúde para Indústria',
+                status: 'Concluído',
+                startDate: '2025-01-01',
+                endDate: '2025-10-31',
+                order: 0,
+                followUp: 'Sem Acompanhamentos',
+                createdAt: '2025-01-01T08:00:00Z',
+                updatedAt: '2025-10-31T16:00:00Z'
+            },
+            {
+                id: 'task-26273',
+                actionId: 26243,
+                action: 'Verificar mensalmente o funcionamento (atas, relatórios)',
+                responsible: 'Mylena Soares',
+                sector: 'Segurança e Saúde para Indústria',
+                status: 'Concluído',
+                startDate: '2025-01-01',
+                endDate: '2025-10-31',
+                order: 1,
+                followUp: 'ATAS retroativas elaboradoras.',
+                createdAt: '2025-01-01T08:00:00Z',
+                updatedAt: '2025-10-31T16:00:00Z'
+            },
+            {
+                id: 'task-26274',
+                actionId: 26243,
+                action: 'Apoiar o desenvolvimento de melhorias e reportar todas as definições',
+                responsible: 'Mylena Soares',
+                sector: 'Segurança e Saúde para Indústria',
+                status: 'Concluído',
+                startDate: '2025-01-01',
+                endDate: '2025-10-31',
+                order: 2,
+                followUp: 'Sem Acompanhamentos',
+                createdAt: '2025-01-01T08:00:00Z',
+                updatedAt: '2025-10-31T16:00:00Z'
+            }
         ]
     };
 

@@ -27,6 +27,14 @@ const AppContent = () => {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800 text-gray-800 dark:text-gray-100 flex flex-col transition-colors duration-300">
+            {/* Skip Link para Acessibilidade */}
+            <a 
+                href="#main-content" 
+                className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-blue-600 focus:text-white focus:rounded-lg focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            >
+                Pular para conteúdo principal
+            </a>
+            
             {/* Topbar Fixa */}
             <header className="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-slate-900 shadow-lg border-b border-gray-200 dark:border-slate-700 transition-colors duration-300">
                 <div className="flex items-center justify-between gap-4 px-4 py-3">
@@ -35,8 +43,17 @@ const AppContent = () => {
                         <img src="/logo.png" alt="Logo" className="h-10 w-auto" />
                     </div>
                     
-                    {/* Espaçador flexível */}
-                    <div className="flex-1"></div>
+                    {/* Título do Plano de Ação - Centro */}
+                    <div className="flex-1 flex justify-center px-4">
+                        <div className="text-center">
+                            <h1 className="text-base sm:text-lg font-bold text-gray-900 dark:text-gray-100 leading-tight">
+                                Manutenção da Certificação ONA 2026
+                            </h1>
+                            <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+                                PA: 26203
+                            </p>
+                        </div>
+                    </div>
                         
                         {/* Botão PA EPA - Final à direita (antes do ThemeToggle) */}
                         {!plansLoading && !error && plans.length > 0 && (
@@ -57,7 +74,7 @@ const AppContent = () => {
             </header>
 
             {/* Conteúdo Principal - Layout Responsivo Otimizado */}
-            <main className="flex-grow mt-16 w-full">
+            <main id="main-content" className="flex-grow mt-16 w-full">
                 <div className="h-full w-full max-w-[2000px] mx-auto px-2 sm:px-4 lg:px-6 xl:px-8 py-4 sm:py-6 lg:py-8">
                     {plansLoading && (
                         <div className="flex items-center justify-center min-h-[60vh]">

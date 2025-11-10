@@ -34,6 +34,7 @@ export interface Task {
     startDate: string;
     endDate: string;
     order: number;
+    followUp?: string; // Acompanhamentos/Observações da tarefa
     createdAt?: string;
     updatedAt?: string;
 }
