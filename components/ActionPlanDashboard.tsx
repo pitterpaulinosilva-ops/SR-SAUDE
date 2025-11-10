@@ -6,6 +6,7 @@ import Sidebar from './Sidebar';
 import StatusChart from './charts/StatusChart';
 import ResponsibleChart from './charts/ResponsibleChart';
 import SectorChart from './charts/SectorChart';
+import AIAssistant from './AIAssistant';
 import Input from './Input';
 import Button from './Button';
 import ActionCard from './ActionCard';
@@ -148,6 +149,12 @@ const ActionPlanDashboard: React.FC<ActionPlanDashboardProps> = ({ plan, actions
                                 <SectorChart data={actions} />
                             )}
                         </div>
+                    </div>
+                );
+            case 'assistant':
+                return (
+                    <div className="h-[calc(100vh-8rem)]">
+                        <AIAssistant actions={actions} />
                     </div>
                 );
             default:

@@ -25,7 +25,8 @@ import {
     X,
     ChevronRight,
     ChevronsLeft,
-    ChevronsRight
+    ChevronsRight,
+    Sparkles
 } from 'lucide-react';
 
 interface SidebarItem {
@@ -120,6 +121,13 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange }) => {
             icon: <Users className="w-5 h-5" />,
             value: 'analytics',
             description: 'Responsáveis e Setores'
+        },
+        {
+            id: 'assistant',
+            label: 'Assistente de Insight',
+            icon: <Sparkles className="w-5 h-5" />,
+            value: 'assistant',
+            description: 'IA para análise de ações'
         }
     ];
 
