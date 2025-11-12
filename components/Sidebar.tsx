@@ -277,9 +277,9 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange }) => {
                                         <ChevronRight className="w-4 h-4 flex-shrink-0 animate-pulse" />
                                     )}
 
-                                    {/* Barra lateral de destaque */}
+                                    {/* Barra lateral de destaque arredondada */}
                                     {isActive && (
-                                        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-10 bg-white rounded-r-full shadow-md" />
+                                        <div className="absolute -left-3 top-1/2 -translate-y-1/2 w-1.5 h-12 bg-white rounded-full shadow-lg" />
                                     )}
 
                                     {/* Tooltip para modo recolhido */}
