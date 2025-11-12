@@ -1,5 +1,5 @@
-import React from 'react';
-import { Users, Building, Calendar, GripVertical } from 'lucide-react';
+import React, { useState } from 'react';
+import { Users, Building, Calendar, GripVertical, ChevronDown, ChevronUp, FileText } from 'lucide-react';
 import { Task, SubTaskStatus } from '../types';
 
 interface TaskItemProps {
@@ -11,7 +11,8 @@ const TaskItem: React.FC<TaskItemProps> = ({
     task,
     isDragging = false 
 }) => {
-    const { action, responsible, sector, status, startDate, endDate, order } = task;
+    const { action, responsible, sector, status, endDate, order, followUp } = task;
+    const [showFollowUp, setShowFollowUp] = useState(false);
 
     // Configuração de cores para cada status
     const statusConfig: Record<SubTaskStatus, { label: string; className: string; bgColor: string }> = {
@@ -33,7 +34,6 @@ const TaskItem: React.FC<TaskItemProps> = ({
     };
 
     const currentStatus = statusConfig[status];
-    const formattedStartDate = new Date(startDate + 'T00:00:00-03:00').toLocaleDateString('pt-BR');
     const formattedEndDate = new Date(endDate + 'T00:00:00-03:00').toLocaleDateString('pt-BR');
 
     return (
@@ -95,12 +95,40 @@ const TaskItem: React.FC<TaskItemProps> = ({
                         
                         <div className="flex items-center gap-2">
                             <Calendar className="w-4 h-4 text-gray-400 dark:text-gray-500 flex-shrink-0" />
-                            <span className="font-medium">Período:</span>
-                            <span>{formattedStartDate} - {formattedEndDate}</span>
+                            <span className="font-medium">Prazo Final:</span>
+                            <span>{formattedEndDate}</span>
                         </div>
                     </div>
 
-
+                    {/* Seção de Acompanhamento */}
+                    <div className="mt-3 pt-3 border-t border-gray-200 dark:border-gray-700">
+                        <button
+                            onClick={() => setShowFollowUp(!showFollowUp)}
+                            className="flex items-center gap-2 text-xs font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors w-full"
+                        >
+                            <FileText className="w-4 h-4" />
+                            <span>Acompanhamento</span>
+                            {showFollowUp ? (
+                                <ChevronUp className="w-4 h-4 ml-auto" />
+                            ) : (
+                                <ChevronDown className="w-4 h-4 ml-auto" />
+                            )}
+                        </button>
+                        
+                        {/* Conteúdo do Acompanhamento */}
+                        <div
+                            className={`
+                                transition-all duration-300 ease-in-out overflow-hidden
+                                ${showFollowUp ? 'max-h-96 mt-2 opacity-100' : 'max-h-0 opacity-0'}
+                            `}
+                        >
+                            <div className="p-3 bg-white dark:bg-slate-900/50 rounded-lg border border-gray-200 dark:border-gray-700">
+                                <p className="text-xs text-gray-600 dark:text-gray-400 whitespace-pre-wrap">
+                                    {followUp || "Sem Acompanhamentos"}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

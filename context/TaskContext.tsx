@@ -48,11 +48,12 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
                 responsible: 'Ana Lima',
                 sector: 'Qualidade',
                 status: 'Concluído',
-                startDate: '2024-05-10',
-                endDate: '2024-05-20',
+                startDate: '2025-01-01',
+                endDate: '2025-11-19',
                 order: 0,
-                createdAt: '2024-05-10T10:00:00Z',
-                updatedAt: '2024-05-20T15:30:00Z'
+                followUp: 'Sem Acompanhamentos',
+                createdAt: '2025-01-01T10:00:00Z',
+                updatedAt: '2025-11-19T15:30:00Z'
             },
             {
                 id: 'task-1-2',
@@ -61,11 +62,12 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
                 responsible: 'Ana Lima',
                 sector: 'Qualidade',
                 status: 'Concluído',
-                startDate: '2024-05-21',
-                endDate: '2024-05-30',
+                startDate: '2025-01-01',
+                endDate: '2025-11-19',
                 order: 1,
-                createdAt: '2024-05-10T10:00:00Z',
-                updatedAt: '2024-05-30T16:00:00Z'
+                followUp: 'Sem Acompanhamentos',
+                createdAt: '2025-01-01T10:00:00Z',
+                updatedAt: '2025-11-19T16:00:00Z'
             },
             {
                 id: 'task-1-3',
@@ -74,11 +76,12 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
                 responsible: 'Ana Lima',
                 sector: 'Qualidade',
                 status: 'Concluído',
-                startDate: '2024-06-01',
-                endDate: '2024-06-10',
+                startDate: '2025-01-01',
+                endDate: '2025-11-19',
                 order: 2,
-                createdAt: '2024-05-10T10:00:00Z',
-                updatedAt: '2024-06-10T14:00:00Z'
+                followUp: 'Sem Acompanhamentos',
+                createdAt: '2025-01-01T10:00:00Z',
+                updatedAt: '2025-11-19T14:00:00Z'
             },
             {
                 id: 'task-1-4',
@@ -87,11 +90,12 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
                 responsible: 'Ana Lima',
                 sector: 'Qualidade',
                 status: 'Concluído',
-                startDate: '2024-06-11',
-                endDate: '2024-06-15',
+                startDate: '2025-01-01',
+                endDate: '2025-11-19',
                 order: 3,
-                createdAt: '2024-05-10T10:00:00Z',
-                updatedAt: '2024-06-15T11:00:00Z'
+                followUp: 'Sem Acompanhamentos',
+                createdAt: '2025-01-01T10:00:00Z',
+                updatedAt: '2025-11-19T11:00:00Z'
             }
         ],
         // Saúde ONA - Ação 2: Treinamento higiene das mãos
@@ -103,11 +107,12 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
                 responsible: 'Carlos Souza',
                 sector: 'Enfermagem',
                 status: 'Concluído',
-                startDate: '2024-06-01',
-                endDate: '2024-06-15',
+                startDate: '2025-01-01',
+                endDate: '2025-11-19',
                 order: 0,
-                createdAt: '2024-06-01T09:00:00Z',
-                updatedAt: '2024-06-15T17:00:00Z'
+                followUp: 'Sem Acompanhamentos',
+                createdAt: '2025-01-01T09:00:00Z',
+                updatedAt: '2025-11-19T17:00:00Z'
             },
             {
                 id: 'task-2-2',
@@ -116,11 +121,12 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
                 responsible: 'Carlos Souza',
                 sector: 'Enfermagem',
                 status: 'Concluído',
-                startDate: '2024-06-16',
-                endDate: '2024-06-20',
+                startDate: '2025-01-01',
+                endDate: '2025-11-19',
                 order: 1,
-                createdAt: '2024-06-01T09:00:00Z',
-                updatedAt: '2024-06-20T10:00:00Z'
+                followUp: 'Sem Acompanhamentos',
+                createdAt: '2025-01-01T09:00:00Z',
+                updatedAt: '2025-11-19T10:00:00Z'
             },
             {
                 id: 'task-2-3',
@@ -129,11 +135,12 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
                 responsible: 'Carlos Souza',
                 sector: 'Enfermagem',
                 status: 'Concluído',
-                startDate: '2024-06-21',
-                endDate: '2024-07-05',
+                startDate: '2025-01-01',
+                endDate: '2025-11-19',
                 order: 2,
-                createdAt: '2024-06-01T09:00:00Z',
-                updatedAt: '2024-07-05T12:00:00Z'
+                followUp: 'Sem Acompanhamentos',
+                createdAt: '2025-01-01T09:00:00Z',
+                updatedAt: '2025-11-19T12:00:00Z'
             },
             {
                 id: 'task-2-4',
@@ -142,11 +149,12 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
                 responsible: 'Carlos Souza',
                 sector: 'Enfermagem',
                 status: 'Em Andamento',
-                startDate: '2024-07-06',
-                endDate: '2024-07-15',
+                startDate: '2025-01-01',
+                endDate: '2025-11-19',
                 order: 3,
-                createdAt: '2024-06-01T09:00:00Z',
-                updatedAt: '2024-07-10T14:00:00Z'
+                followUp: 'Sem Acompanhamentos',
+                createdAt: '2025-01-01T09:00:00Z',
+                updatedAt: '2025-11-10T14:00:00Z'
             },
             {
                 id: 'task-2-5',
@@ -155,11 +163,12 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
                 responsible: 'Carlos Souza',
                 sector: 'Enfermagem',
                 status: 'Não Iniciado',
-                startDate: '2024-07-16',
-                endDate: '2024-07-25',
+                startDate: '2025-01-01',
+                endDate: '2025-11-19',
                 order: 4,
-                createdAt: '2024-06-01T09:00:00Z',
-                updatedAt: '2024-06-01T09:00:00Z'
+                followUp: 'Sem Acompanhamentos',
+                createdAt: '2025-01-01T09:00:00Z',
+                updatedAt: '2025-01-01T09:00:00Z'
             }
         ],
         // Saúde ONA - Ação 3: Checklist cirurgia
@@ -171,11 +180,12 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
                 responsible: 'Mariana Costa',
                 sector: 'Centro Cirúrgico',
                 status: 'Concluído',
-                startDate: '2024-06-05',
-                endDate: '2024-06-20',
+                startDate: '2025-01-01',
+                endDate: '2025-11-19',
                 order: 0,
-                createdAt: '2024-06-05T08:00:00Z',
-                updatedAt: '2024-06-20T16:00:00Z'
+                followUp: 'Sem Acompanhamentos',
+                createdAt: '2025-01-01T08:00:00Z',
+                updatedAt: '2025-11-19T16:00:00Z'
             },
             {
                 id: 'task-3-2',
@@ -184,11 +194,12 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
                 responsible: 'Mariana Costa',
                 sector: 'Centro Cirúrgico',
                 status: 'Em Andamento',
-                startDate: '2024-06-21',
-                endDate: '2024-07-05',
+                startDate: '2025-01-01',
+                endDate: '2025-11-19',
                 order: 1,
-                createdAt: '2024-06-05T08:00:00Z',
-                updatedAt: '2024-07-01T10:00:00Z'
+                followUp: 'Sem Acompanhamentos',
+                createdAt: '2025-01-01T08:00:00Z',
+                updatedAt: '2025-11-10T10:00:00Z'
             },
             {
                 id: 'task-3-3',
@@ -197,11 +208,12 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
                 responsible: 'Mariana Costa',
                 sector: 'Centro Cirúrgico',
                 status: 'Não Iniciado',
-                startDate: '2024-07-06',
-                endDate: '2024-07-15',
+                startDate: '2025-01-01',
+                endDate: '2025-11-19',
                 order: 2,
-                createdAt: '2024-06-05T08:00:00Z',
-                updatedAt: '2024-06-05T08:00:00Z'
+                followUp: 'Sem Acompanhamentos',
+                createdAt: '2025-01-01T08:00:00Z',
+                updatedAt: '2025-01-01T08:00:00Z'
             },
             {
                 id: 'task-3-4',
@@ -210,14 +222,15 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
                 responsible: 'Mariana Costa',
                 sector: 'Centro Cirúrgico',
                 status: 'Não Iniciado',
-                startDate: '2024-07-16',
-                endDate: '2024-07-20',
+                startDate: '2025-01-01',
+                endDate: '2025-11-19',
                 order: 3,
-                createdAt: '2024-06-05T08:00:00Z',
-                updatedAt: '2024-06-05T08:00:00Z'
+                followUp: 'Sem Acompanhamentos',
+                createdAt: '2025-01-01T08:00:00Z',
+                updatedAt: '2025-01-01T08:00:00Z'
             }
         ],
-        // Saúde ONA - Ação 26208: Testes de planos de contingência
+        // Saúde ONA - Ação 26208: Testes de planos de contingência (Prazo: 19/11)
         26208: [
             {
                 id: 'task-26276',
@@ -227,8 +240,9 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
                 sector: 'Segurança e Saúde para Indústria',
                 status: 'Em Andamento',
                 startDate: '2025-01-01',
-                endDate: '2025-10-31',
+                endDate: '2025-11-19',
                 order: 0,
+                followUp: 'Sem Acompanhamentos',
                 createdAt: '2025-01-01T08:00:00Z',
                 updatedAt: '2025-11-10T10:00:00Z'
             },
@@ -240,8 +254,9 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
                 sector: 'Segurança e Saúde para Indústria',
                 status: 'Em Andamento',
                 startDate: '2025-01-01',
-                endDate: '2025-10-31',
+                endDate: '2025-11-19',
                 order: 1,
+                followUp: 'Sem Acompanhamentos',
                 createdAt: '2025-01-01T08:00:00Z',
                 updatedAt: '2025-11-10T10:00:00Z'
             },
@@ -253,13 +268,14 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
                 sector: 'Unidade Sesi Cambona',
                 status: 'Em Andamento',
                 startDate: '2025-01-01',
-                endDate: '2025-10-31',
+                endDate: '2025-11-19',
                 order: 2,
+                followUp: 'Sem Acompanhamentos',
                 createdAt: '2025-01-01T08:00:00Z',
                 updatedAt: '2025-11-10T10:00:00Z'
             }
         ],
-        // Saúde ONA - Ação 26209: Manual de Auditorias
+        // Saúde ONA - Ação 26209: Manual de Auditorias (Prazo: 20/11)
         26209: [
             {
                 id: 'task-26279',
@@ -269,13 +285,14 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
                 sector: 'Processos',
                 status: 'Em Andamento',
                 startDate: '2025-01-01',
-                endDate: '2025-10-31',
+                endDate: '2025-11-20',
                 order: 0,
+                followUp: 'Sem Acompanhamentos',
                 createdAt: '2025-01-01T08:00:00Z',
                 updatedAt: '2025-11-10T10:00:00Z'
             }
         ],
-        // Saúde ONA - Ação 26211: Rastreabilidade de medicamentos
+        // Saúde ONA - Ação 26211: Rastreabilidade de medicamentos (Prazo: 20/11)
         26211: [
             {
                 id: 'task-26329',
@@ -285,10 +302,10 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
                 sector: 'Segurança e Saúde para Indústria',
                 status: 'Concluído',
                 startDate: '2025-01-01',
-                endDate: '2025-10-15',
+                endDate: '2025-11-20',
                 order: 0,
                 createdAt: '2025-01-01T08:00:00Z',
-                updatedAt: '2025-10-15T16:00:00Z'
+                updatedAt: '2025-11-20T16:00:00Z'
             },
             {
                 id: 'task-26330',
@@ -298,11 +315,11 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
                 sector: 'Segurança e Saúde para Indústria',
                 status: 'Concluído',
                 startDate: '2025-01-01',
-                endDate: '2025-10-22',
+                endDate: '2025-11-20',
                 order: 1,
                 followUp: 'POP REVISADO E FINALIZADO.',
                 createdAt: '2025-01-01T08:00:00Z',
-                updatedAt: '2025-10-22T14:00:00Z'
+                updatedAt: '2025-11-20T14:00:00Z'
             },
             {
                 id: 'task-26331',
@@ -312,11 +329,11 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
                 sector: 'Segurança e Saúde para Indústria',
                 status: 'Concluído',
                 startDate: '2025-01-01',
-                endDate: '2025-10-22',
+                endDate: '2025-11-20',
                 order: 2,
                 followUp: 'Atualizado no prontuário LifeOne e no POP de auditoria dos prontuários de saúde assistencial. Dra Márcia e Dra Gabriela cientes e treinando individualmente os profissionais.',
                 createdAt: '2025-01-01T08:00:00Z',
-                updatedAt: '2025-10-22T17:00:00Z'
+                updatedAt: '2025-11-20T17:00:00Z'
             },
             {
                 id: 'task-26332',
@@ -326,7 +343,7 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
                 sector: 'Unidade Sesi Cambona',
                 status: 'Em Andamento',
                 startDate: '2025-01-01',
-                endDate: '2025-10-31',
+                endDate: '2025-11-20',
                 order: 3,
                 createdAt: '2025-01-01T08:00:00Z',
                 updatedAt: '2025-11-10T10:00:00Z'
@@ -339,13 +356,13 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
                 sector: 'Segurança e Saúde para Indústria',
                 status: 'Concluído',
                 startDate: '2025-01-01',
-                endDate: '2025-10-15',
+                endDate: '2025-11-20',
                 order: 4,
                 createdAt: '2025-01-01T08:00:00Z',
-                updatedAt: '2025-10-15T15:00:00Z'
+                updatedAt: '2025-11-20T15:00:00Z'
             }
         ],
-        // Saúde ONA - Ação 26212: Registros Odontologia
+        // Saúde ONA - Ação 26212: Registros Odontologia (Prazo: 20/11)
         26212: [
             {
                 id: 'task-26281',
@@ -355,8 +372,9 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
                 sector: 'Unidade Sesi Cambona',
                 status: 'Em Andamento',
                 startDate: '2025-01-01',
-                endDate: '2025-10-31',
+                endDate: '2025-11-20',
                 order: 0,
+                followUp: 'Revisar a adequação do formulário de registro de limpeza, checar o manual e cronograma, e verificar a metodologia de registro. Reunir com a equipe para treinar a adequação.',
                 createdAt: '2025-01-01T08:00:00Z',
                 updatedAt: '2025-11-10T10:00:00Z'
             },
@@ -368,13 +386,14 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
                 sector: 'Unidade Sesi Cambona',
                 status: 'Em Andamento',
                 startDate: '2025-01-01',
-                endDate: '2025-10-31',
+                endDate: '2025-11-20',
                 order: 1,
+                followUp: 'Revisar a adequação do formulário de registro de limpeza, checar o manual e cronograma, e verificar a metodologia de registro. Reunir com a equipe para treinar a adequação.',
                 createdAt: '2025-01-01T08:00:00Z',
                 updatedAt: '2025-11-10T10:00:00Z'
             }
         ],
-        // Saúde ONA - Ação 26213: Rastreabilidade de materiais estéreis
+        // Saúde ONA - Ação 26213: Rastreabilidade de materiais estéreis (Prazo: 20/11)
         26213: [
             {
                 id: 'task-26283',
@@ -384,8 +403,9 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
                 sector: 'Segurança e Saúde para Indústria',
                 status: 'Em Andamento',
                 startDate: '2025-01-01',
-                endDate: '2025-10-31',
+                endDate: '2025-11-20',
                 order: 0,
+                followUp: 'Status: Não existe rastreamento por material; kits retornam de forma aleatória. Já existe uma planilha na CME que informa ciclos e saída.',
                 createdAt: '2025-01-01T08:00:00Z',
                 updatedAt: '2025-11-10T10:00:00Z'
             },
@@ -397,13 +417,14 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
                 sector: 'Unidade Sesi Cambona',
                 status: 'Em Andamento',
                 startDate: '2025-01-01',
-                endDate: '2025-10-31',
+                endDate: '2025-11-20',
                 order: 1,
+                followUp: 'Status: Não existe rastreamento por material; kits retornam de forma aleatória. Já existe uma planilha na CME que informa ciclos e saída.',
                 createdAt: '2025-01-01T08:00:00Z',
                 updatedAt: '2025-11-10T10:00:00Z'
             }
         ],
-        // Saúde ONA - Ação 26243: Acompanhamento de comissões
+        // Saúde ONA - Ação 26243: Acompanhamento de comissões (Prazo: 21/11)
         26243: [
             {
                 id: 'task-26272',
@@ -413,11 +434,11 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
                 sector: 'Segurança e Saúde para Indústria',
                 status: 'Concluído',
                 startDate: '2025-01-01',
-                endDate: '2025-10-31',
+                endDate: '2025-11-21',
                 order: 0,
                 followUp: 'Sem Acompanhamentos',
                 createdAt: '2025-01-01T08:00:00Z',
-                updatedAt: '2025-10-31T16:00:00Z'
+                updatedAt: '2025-11-21T16:00:00Z'
             },
             {
                 id: 'task-26273',
@@ -427,11 +448,11 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
                 sector: 'Segurança e Saúde para Indústria',
                 status: 'Concluído',
                 startDate: '2025-01-01',
-                endDate: '2025-10-31',
+                endDate: '2025-11-21',
                 order: 1,
-                followUp: 'ATAS retroativas elaboradoras.',
+                followUp: 'ATAS retroativas elaboradas.',
                 createdAt: '2025-01-01T08:00:00Z',
-                updatedAt: '2025-10-31T16:00:00Z'
+                updatedAt: '2025-11-21T16:00:00Z'
             },
             {
                 id: 'task-26274',
@@ -441,11 +462,11 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
                 sector: 'Segurança e Saúde para Indústria',
                 status: 'Concluído',
                 startDate: '2025-01-01',
-                endDate: '2025-10-31',
+                endDate: '2025-11-21',
                 order: 2,
                 followUp: 'Sem Acompanhamentos',
                 createdAt: '2025-01-01T08:00:00Z',
-                updatedAt: '2025-10-31T16:00:00Z'
+                updatedAt: '2025-11-21T16:00:00Z'
             }
         ]
     };
