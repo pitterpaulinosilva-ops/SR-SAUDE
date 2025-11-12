@@ -1,17 +1,15 @@
 /**
- * Sidebar Component - Redesigned
+ * Sidebar Component
  * 
- * Navegação lateral responsiva com sistema de recolhimento/expansão.
+ * Navegação lateral responsiva com design uniforme ao projeto.
  * 
  * Características:
+ * - Design glassmorphism consistente com o projeto
  * - Sistema de recolhimento/expansão com estado persistente
- * - Largura: 300px (expandida) / 60px (recolhida)
- * - Altura dinâmica baseada no viewport (100vh)
+ * - Largura: 280px (expandida) / 72px (recolhida)
  * - Transições suaves (300ms)
  * - Responsiva com gestos de swipe em mobile
  * - Acessibilidade completa (ARIA attributes)
- * - Scroll interno quando necessário
- * - Sombra sutil quando sobreposta
  * - Suporte a temas claro/escuro
  * 
  * @component
@@ -149,57 +147,57 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange }) => {
 
     return (
         <>
-            {/* Mobile Toggle Button - Ajustado para novo header */}
+            {/* Mobile Toggle Button */}
             <button
                 onClick={toggleMobile}
-                className="md:hidden fixed top-[92px] z-50 left-4 p-2 rounded-lg bg-white dark:bg-slate-800 shadow-lg border border-gray-200 dark:border-slate-700 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors duration-300"
+                className="md:hidden fixed top-[92px] z-50 left-4 p-2.5 rounded-xl bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm shadow-lg border border-white/20 dark:border-slate-700/20 text-gray-700 dark:text-gray-200 hover:bg-white dark:hover:bg-slate-700 transition-all duration-300 hover:scale-105"
                 aria-label={isMobileOpen ? 'Fechar menu' : 'Abrir menu'}
                 aria-expanded={isMobileOpen}
                 aria-controls="sidebar-navigation"
             >
-                {isMobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                {isMobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
 
             {/* Overlay para mobile */}
             {isMobileOpen && (
                 <div
-                    className="md:hidden fixed inset-0 bg-black/50 dark:bg-black/70 z-40 transition-opacity duration-300"
+                    className="md:hidden fixed inset-0 bg-black/60 dark:bg-black/80 backdrop-blur-sm z-40 transition-all duration-300"
                     onClick={toggleMobile}
                     aria-hidden="true"
                 />
             )}
 
-            {/* Sidebar - Redesigned com recolhimento/expansão */}
+            {/* Sidebar com design glassmorphism */}
             <aside
                 ref={sidebarRef}
                 id="sidebar-navigation"
                 className={`
                     fixed md:sticky top-[88px] md:top-20 left-0 
                     h-[calc(100vh-88px)] md:h-[calc(100vh-5rem)]
-                    bg-white dark:bg-slate-800 
-                    border-r border-gray-200 dark:border-slate-700
+                    bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm
+                    border-r border-white/20 dark:border-slate-700/20
                     transition-all duration-300 ease-in-out
                     z-40
                     ${isMobileOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full md:translate-x-0'}
-                    ${isExpanded ? 'w-[300px]' : 'w-[300px] md:w-[60px]'}
-                    ${!isExpanded && 'md:shadow-md'}
+                    ${isExpanded ? 'w-[280px]' : 'w-[280px] md:w-[72px]'}
+                    ${!isExpanded && 'md:shadow-lg'}
                 `}
                 aria-label="Menu de navegação"
                 aria-expanded={isExpanded}
             >
                 <nav className="h-full flex flex-col overflow-hidden">
-                    {/* Header da Sidebar com Toggle Button */}
+                    {/* Header da Sidebar */}
                     <div className={`
-                        flex items-center justify-between p-4 border-b border-gray-200 dark:border-slate-700
+                        flex items-center justify-between p-4 border-b border-white/20 dark:border-slate-700/20
                         ${!isExpanded && 'md:justify-center'}
                     `}>
                         {(isExpanded || window.innerWidth < 768) && (
                             <div className="flex-1 min-w-0">
-                                <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 truncate">
-                                    Navegação
+                                <h2 className="text-base font-bold text-gray-900 dark:text-gray-100 truncate">
+                                    Menu
                                 </h2>
-                                <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
-                                    Selecione uma visualização
+                                <p className="text-xs text-gray-600 dark:text-gray-400 truncate mt-0.5">
+                                    Navegação
                                 </p>
                             </div>
                         )}
@@ -207,7 +205,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange }) => {
                         {/* Desktop Toggle Button */}
                         <button
                             onClick={toggleExpanded}
-                            className="hidden md:flex items-center justify-center p-2 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors duration-300"
+                            className="hidden md:flex items-center justify-center p-2 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-white/50 dark:hover:bg-slate-700/50 transition-all duration-300 hover:scale-110"
                             aria-label={isExpanded ? 'Recolher sidebar' : 'Expandir sidebar'}
                             aria-expanded={isExpanded}
                             title={isExpanded ? 'Recolher' : 'Expandir'}
@@ -220,8 +218,8 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange }) => {
                         </button>
                     </div>
 
-                    {/* Menu Items - Com scroll interno */}
-                    <div className="flex-1 overflow-y-auto overflow-x-hidden p-4 space-y-2 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-slate-600 scrollbar-track-transparent">
+                    {/* Menu Items */}
+                    <div className="flex-1 overflow-y-auto overflow-x-hidden p-3 space-y-2">
 
                         {sidebarItems.map((item) => {
                             const isActive = activeTab === item.value;
@@ -232,14 +230,15 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange }) => {
                                     key={item.id}
                                     onClick={() => handleItemClick(item.value)}
                                     className={`
-                                        group relative w-full flex items-center rounded-lg
+                                        group relative w-full flex items-center rounded-xl
                                         text-left transition-all duration-300
-                                        ${showLabels ? 'gap-3 px-3 py-3' : 'justify-center px-2 py-3'}
+                                        ${showLabels ? 'gap-3 px-4 py-3.5' : 'justify-center px-3 py-3.5'}
                                         ${isActive
-                                            ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-md'
-                                            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700'
+                                            ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-lg hover:shadow-xl'
+                                            : 'text-gray-700 dark:text-gray-300 hover:bg-white/50 dark:hover:bg-slate-700/50'
                                         }
                                         focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-slate-800
+                                        hover:scale-[1.02]
                                     `}
                                     aria-label={item.label}
                                     aria-current={isActive ? 'page' : undefined}
@@ -256,15 +255,15 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange }) => {
                                     {/* Conteúdo - Visível apenas quando expandido */}
                                     {showLabels && (
                                         <div className="flex-1 min-w-0">
-                                            <div className="font-medium text-sm truncate">
+                                            <div className="font-semibold text-sm truncate">
                                                 {item.label}
                                             </div>
                                             {item.description && (
                                                 <div className={`
-                                                    text-xs mt-0.5 transition-colors duration-300 truncate
+                                                    text-xs mt-1 transition-colors duration-300 truncate
                                                     ${isActive 
-                                                        ? 'text-blue-100' 
-                                                        : 'text-gray-500 dark:text-gray-400'
+                                                        ? 'text-blue-50/90' 
+                                                        : 'text-gray-600 dark:text-gray-400'
                                                     }
                                                 `}>
                                                     {item.description}
@@ -280,14 +279,17 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange }) => {
 
                                     {/* Barra lateral de destaque */}
                                     {isActive && (
-                                        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-white rounded-r-full" />
+                                        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-10 bg-white rounded-r-full shadow-md" />
                                     )}
 
                                     {/* Tooltip para modo recolhido */}
                                     {!showLabels && (
-                                        <div className="absolute left-full ml-2 px-3 py-2 bg-gray-900 dark:bg-slate-700 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-200 whitespace-nowrap z-50 shadow-lg">
-                                            {item.label}
-                                            <div className="absolute right-full top-1/2 -translate-y-1/2 border-4 border-transparent border-r-gray-900 dark:border-r-slate-700"></div>
+                                        <div className="absolute left-full ml-3 px-3 py-2 bg-gray-900/95 dark:bg-slate-700/95 backdrop-blur-sm text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 pointer-events-none transition-all duration-200 whitespace-nowrap z-50 shadow-xl">
+                                            <div className="font-medium">{item.label}</div>
+                                            {item.description && (
+                                                <div className="text-xs text-gray-300 mt-0.5">{item.description}</div>
+                                            )}
+                                            <div className="absolute right-full top-1/2 -translate-y-1/2 border-[6px] border-transparent border-r-gray-900/95 dark:border-r-slate-700/95"></div>
                                         </div>
                                     )}
                                 </button>
@@ -297,10 +299,10 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange }) => {
 
                     {/* Footer da Sidebar */}
                     {(isExpanded || window.innerWidth < 768) && (
-                        <div className="p-4 border-t border-gray-200 dark:border-slate-700">
-                            <div className="text-xs text-gray-500 dark:text-gray-400">
-                                <p className="font-medium mb-1">Dica:</p>
-                                <p className="truncate">Use as teclas de seta para navegar</p>
+                        <div className="p-4 border-t border-white/20 dark:border-slate-700/20">
+                            <div className="text-xs text-gray-600 dark:text-gray-400">
+                                <p className="font-semibold mb-1.5 text-gray-700 dark:text-gray-300">💡 Dica</p>
+                                <p className="leading-relaxed">Navegue rapidamente entre as seções</p>
                             </div>
                         </div>
                     )}
