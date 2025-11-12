@@ -279,7 +279,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange }) => {
 
                                     {/* Barra lateral de destaque arredondada */}
                                     {isActive && (
-                                        <div className="absolute -left-3 top-1/2 -translate-y-1/2 w-1.5 h-12 bg-white rounded-full shadow-lg" />
+                                        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-12 bg-white rounded-full shadow-lg" />
                                     )}
 
                                     {/* Tooltip para modo recolhido */}
